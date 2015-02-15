@@ -8,25 +8,18 @@ module.exports = function(karma) {
     // list of files / patterns to load in the browser
     files: [
         'lib/jquery/jquery-2.0.3.min.js',
-        'lib/angular/1.1.5/angular.js',
-        'lib/angular/1.1.5/angular-cookies.min.js',
-        'lib/angular/1.1.5/angular-mocks.js',
-        'lib/angular/angular-ui-sortable.js',
+
+        'bower_components/angular/angular.js',
+        'bower_components/angular-route/angular-route.js',
+        'bower_components/angular-cookies/angular-cookies.js',
+        'bower_components/angular-mocks/angular-mocks.js',
         
-        /*
-        For angular 1.2:
-         'lib/angular/1.2/angular.js',
-         'lib/angular/1.2/angular-route.min.js',
-         'lib/angular/1.2/angular-touch.min.js',
-         'lib/angular/1.2/angular-cookies.min.js',
-         'lib/angular/1.2/angular-animate.min.js',
-         'lib/angular/1.2/angular-mocks.js',*/
-         
-
-         'lib/../build/belle/lib/underscore/underscore-min.js',
-         'lib/umbraco/Extensions.js', 
-         'lib/../build/belle/lib/rgrove-lazyload/lazyload.js',
-
+        'bower_components/lodash/lodash.js',
+        'bower_components/rgrove-lazyload/lazyload.js',
+       
+        'lib/angular/angular-ui-sortable.js',
+        'lib/umbraco/Extensions.js', 
+        
 
          'test/config/app.unit.js',
          'src/common/mocks/umbraco.servervariables.js',
