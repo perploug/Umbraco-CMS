@@ -4,16 +4,13 @@ var app = angular.module('umbraco', [
 	'umbraco.resources',
 	'umbraco.services',
 	'umbraco.httpbackend',
+    
+    'ngRoute',
     'ngCookies',
-    'ngMobile',
+    'ngTouch',
     'ngSanitize',
-    /*'ui.sortable',*/
-    'blueimp.fileupload',
+    'ngAnimate',
+
+    'angularFileUpload',
     'tmh.dynamicLocale'
 ]);
-
-/* For Angular 1.2: we need to load in Route, animate and touch seperately
-	    'ngRoute',
-	    'ngAnimate',
-	    'ngTouch'
-*/

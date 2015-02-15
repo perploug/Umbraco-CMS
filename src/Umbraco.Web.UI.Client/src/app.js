@@ -4,10 +4,14 @@ var app = angular.module('umbraco', [
 	'umbraco.resources',
 	'umbraco.services',
 	'umbraco.packages',
+    
+   	'ngRoute',
     'ngCookies',
+    'ngTouch',
     'ngSanitize',
-    'ngMobile',
-    'blueimp.fileupload',
+    'ngAnimate',
+
+    'angularFileUpload',
     'tmh.dynamicLocale'
 ]);
 var packages = angular.module("umbraco.packages", []);
