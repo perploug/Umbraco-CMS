@@ -8,54 +8,8 @@
 IFRAME {overflow:hidden;}
 
 
- // Sortabel
- // -------------------------
-
- .usky-grid .ui-sortable-helper  {
-     position:absolute !important;
-     border: dashed 1px #000 !important;
-     background: #ccc;
-     opacity: 0.4;
-     height: 80px !important;
-     width: 160px !important;
-     overflow: hidden;
-     padding: 5px;
-     border-radius:5px;
-     -webkit-box-shadow: 3px 3px 12px 0px rgba(50, 50, 50, 0.45);
-     -moz-box-shadow:    3px 3px 12px 0px rgba(50, 50, 50, 0.45);
-     box-shadow:         3px 3px 12px 0px rgba(50, 50, 50, 0.45);
- }
-
- .usky-grid .ui-sortable-helper *{
-     border: none !important;
-     background: none !important;
-     color: #999 !important;
-     padding: 0 !important;
-     margin: 0 !important;
- }
-
- .usky-grid .ui-sortable-helper .cell-tools{
+.ui-sortable-helper .cell-tools{
      display: none !important;
- }
-
- .usky-grid .ui-sortable-placeholder{
-     border: 2px dashed @grayLight;
-     padding: 20px;
-     font-family: icomoon;
-     text-align: center;
-     font-size: 85px;
-     line-height: 65px;
-     color: @gray;
-     vertical-align: middle;
-     background-color:@grayLighter;
- }
-
- .usky-grid .ui-sortable-placeholder:hover{
-     border-color: @gray;
- }
-
- .usky-grid .ui-sortable-placeholder:before{
-     content: "\e1bd";
  }
 
 
@@ -151,13 +105,9 @@ IFRAME {overflow:hidden;}
     bottom: 0;
     top: 0;
     right: 0;
-    width: 50px;
+    width: 150px;
     opacity: 0.3;
     z-index: 50;
-}
-
-.usky-grid  .cell-tools.with-prompt {
-    width:200px;
 }
 
 .usky-grid .cell-tools:hover{
@@ -347,20 +297,8 @@ IFRAME {overflow:hidden;}
      border-radius: 200px;
      background: rgba(255,255,255, 1);
      border:1px solid rgb(182, 182, 182);
-     margin: 2px;    
+     margin: 2px;
  }
-
-  .usky-grid  .iconBox span.prompt {
-      display:block;
-      min-width: 150px;
-      text-align:center;
-
-  }
-
-  .usky-grid  .iconBox span.prompt > a {
-      text-decoration:underline;
-  }
-
  .usky-grid .iconBox:hover, .usky-grid .iconBox:hover *{
           background: @blue !important;
           color: white !important;
