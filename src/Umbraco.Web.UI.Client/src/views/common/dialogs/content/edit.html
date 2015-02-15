@@ -15,9 +15,8 @@
             <div id="tab{{tab.id}}" ng-repeat="tab in content.tabs">
                 <div class="umb-pane" ng-if="!tab.hide">
                     <h5>{{tab.label}}</h5>
-                    <umb-property property="property"
-                                  ng-repeat="property in tab.properties">
-                        <umb-editor model="property"></umb-editor>
+                    <umb-property property="property" ng-repeat="property in tab.properties">
+                        <umb-property-editor model="property"></umb-property-editor>
                     </umb-property>
                 </div>
             </div>    
