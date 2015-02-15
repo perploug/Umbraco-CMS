@@ -1,8 +1,6 @@
 <div ng-controller="Umbraco.PropertyEditors.FolderBrowserController">
 
-<div>
-
-    <div ng-file-drop ng-file-select ng-hide="active" 
+    <div ng-file-drop ng-file-select ng-hide="creating || uploading"
         ng-model="files" 
         class="umb-upload-button-big" 
         drag-over-class="dragover" 
@@ -15,39 +13,29 @@
     </div>
     
 
-    <div ng-repeat="file in files" class="span2">
-        <div class="thumbnail">
-            <div style="max-height: 150px; width; 100%; overflow: hidden; position: relative;">
-                <div 
-                    style="top: 0; bottom: 0; right: 0; width: 100%; position: absolute; background: white; opacity: 0.7" 
-                    ng-style="{'width': 100-file.progress + '%'}">
-                </div> 
-                
-                <img src="{{file.inBrowserSrc}}" />
+    <div>
+        <div ng-repeat="file in files" class="span3">
+            <div class="thumbnail" style="height: 150px">
+                <div style="height: 100%; width; 100%; overflow: hidden; position: relative;">
+                    <div 
+                        style="top: 0; bottom: 0; right: 0; width: 100%; position: absolute; background: white; opacity: 0.7" 
+                        ng-style="{'width': 100-file.progress + '%'}">
+                    </div> 
+                    
+                    <img ng-src="{{file.inBrowserSrc}}" style="min-height: 150px" />
+                </div>
             </div>
         </div>
     </div>
 
-    <!--
-    <span class="fileinput-button umb-upload-button-big"
-        style="margin-bottom: 5px;"
-        ng-hide="dropping"
-        ng-class="{disabled: disabled}">
-        <i class="icon icon-page-up"></i>
-        <p><localize key="media_clickToUpload">Click to upload</localize></p>
-        <input type="file" name="files[]" multiple ng-disabled="disabled">
-    </span>
-
-    <umb-upload-dropzone dropping="dropping" files="filesUploading">
-        </umb-upload-dropzone>
-    -->
-
+    <hr/>
+    
     <umb-photo-folder
         min-height="105"
         min-width="220"
         on-click="clickHandler"
         ng-model="images">
     </umb-photo-folder>
-</div>
+
 
 </div>
