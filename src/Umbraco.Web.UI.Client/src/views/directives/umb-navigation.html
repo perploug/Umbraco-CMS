@@ -1,11 +1,13 @@
 <div id="leftcolumn" ng-controller="Umbraco.NavigationController" 
-    ng-mouseleave="leaveTree($event)" ng-mouseenter="enterTree($event)">
+    ng-mouseleave="leaveTree($event)" 
+    ng-mouseenter="enterTree($event)"> 
     
-    <umb-sections sections="sections" ng-if="authenticated">
+    <umb-sections sections="sections" 
+        ng-if="authenticated">
     </umb-sections>
 
     <!-- navigation container -->
-    <div id="navigation" ng-show="showNavigation" class="fill umb-modalcolumn" ng-animate="'slide'">
+    <div id="navigation" ng-show="showNavigation" class="fill umb-modalcolumn slide-in-left" >
 
         <div ng-swipe-left="nav.hideNavigation()" class="navigation-inner-container span6" style="z-index: 100">
             
@@ -75,7 +77,7 @@
         <div class="offset6" style="z-index: 10">
             
             <!-- The context menu -->
-            <div id='contextMenu' class="umb-modalcolumn fill shadow" ng-swipe-left="nav.hideMenu()" ng-show="showContextMenu" ng-animate="'slide'">
+            <div id='contextMenu' class="umb-modalcolumn fill shadow-depth-3 slide-in-left" ng-swipe-left="nav.hideMenu()" ng-show="showContextMenu">
                 <umb-context-menu                     
                     menu-dialog-title="{{menuDialogTitle}}"
                     current-section="{{currentSection}}"
@@ -86,9 +88,9 @@
             
             
             <!-- Tree dialogs -->
-            <div id="dialog" class='umb-modalcolumn fill shadow'
+            <div id="dialog" class='umb-modalcolumn fill slide-in-left shadow-depth-3'
                 ng-swipe-left="nav.hideDialog()"
-                ng-show="showContextMenuDialog" ng-animate="'slide'">
+                ng-show="showContextMenuDialog">
                 <div class='umb-modalcolumn-header'>
                     <h1>{{menuDialogTitle}}</h1>
                 </div>
