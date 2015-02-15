@@ -5,6 +5,7 @@
     			<h1>{{dashboard.name}}</h1>
     	</div>
 	</umb-header>
+
 	<umb-tab-view>
         <umb-tab id="tab{{tab.id}}" rel="{{tab.id}}" ng-repeat="tab in dashboard.tabs">
             <div class="umb-pane">
@@ -20,12 +21,13 @@
                             ng-switch-when="true">
                             <h3 ng-show="property.caption">{{property.caption}}</h3>
                             
-                            <iframe ng-src="dashboard/usercontrolproxy.aspx?ctrl={{ property.path}}"></iframe>
+                            <iframe ng-src="{{property.path}}"></iframe>
                         </div>
 
                    	</div>
             </div>
         </umb-tab>
     </umb-tab-view>
+
 </umb-panel>
 </form>
