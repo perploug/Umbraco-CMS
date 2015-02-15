@@ -95,24 +95,14 @@ function NavigationController($scope, $rootScope, $location, $log, $routeParams,
         }
     });
 
+
     //This reacts to clicks passed to the body element which emits a global call to close all dialogs
     eventsService.on("app.closeDialogs", function (event) {
         if (appState.getGlobalState("stickyNavigation")) {
             navigationService.hideNavigation();
-            //TODO: don't know why we need this? - we are inside of an angular event listener.
-            angularHelper.safeApply($scope);
         }
     });
 
-    //when a user logs out or timesout
-    eventsService.on("app.notAuthenticated", function () {
-        $scope.authenticated = false;
-    });
-
-    //when the application is ready and the user is authorized setup the data
-    eventsService.on("app.ready", function (evt, data) {
-        $scope.authenticated = true;
-    });
 
     //this reacts to the options item in the tree
     //todo, migrate to nav service
@@ -142,8 +132,10 @@ function NavigationController($scope, $rootScope, $location, $log, $routeParams,
         if (!event) {
             return;
         }
+
         if (!appState.getGlobalState("touchDevice")) {
             treeActive = false;
+        
             $timeout(function() {
                 if (!treeActive) {
                     navigationService.hideTree();
