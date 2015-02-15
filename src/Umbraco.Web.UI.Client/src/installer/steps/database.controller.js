@@ -20,7 +20,7 @@ angular.module("umbraco.install").controller("Umbraco.Installer.DataBaseControll
 			$http.post(Umbraco.Sys.ServerVariables.installApiBaseUrl + "PostValidateDatabaseConnection",
 				model).then(function(response){
 					
-					if(response.data === "true"){
+					if(response.data === true){
 						installerService.forward();	
 					}else{
 						$scope.invalidDbDns = true;

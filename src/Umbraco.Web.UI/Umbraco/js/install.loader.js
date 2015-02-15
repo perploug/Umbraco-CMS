@@ -1,12 +1,14 @@
 LazyLoad.js( [
       'lib/jquery/jquery-2.0.3.min.js',
-      /* 1.1.5 */
-      'lib/angular/1.1.5/angular.min.js',
-      'lib/angular/1.1.5/angular-cookies.min.js',
-      'lib/angular/1.1.5/angular-mobile.min.js',
-      'lib/angular/1.1.5/angular-mocks.js',
-      'lib/angular/1.1.5/angular-sanitize.min.js',
-      'lib/underscore/underscore-min.js',
+      'lib/lodash/lodash.min.js',
+    
+      'lib/angular/angular.js',
+      'lib/angular-animate/angular-animate.min.js',
+      'lib/angular-cookies/angular-cookies.min.js',
+      'lib/angular-touch/angular-touch.min.js',
+      'lib/angular-sanitize/angular-sanitize.min.js',
+      'lib/angular-route/angular-route.min.js',
+    
       'js/umbraco.installer.js',
       'js/umbraco.directives.js'
     ], function () {
