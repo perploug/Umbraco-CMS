@@ -1,8 +1,8 @@
 LazyLoad.js(
     [
-        'lib/jquery/jquery-2.0.3.min.js',
+        'lib/jquery/jquery.min.js',
         'lib/lodash/lodash.min.js',
-        'lib/jquery/jquery-ui-1.10.3.custom.min.js',
+        'lib/jquery-ui/jquery-ui.min.js',
 
         'lib/angular/angular.js',
         'lib/angular-animate/angular-animate.min.js',
@@ -11,8 +11,8 @@ LazyLoad.js(
         'lib/angular-sanitize/angular-sanitize.min.js',
         'lib/angular-route/angular-route.min.js',
 
-        'lib/angular/angular-ui-sortable.js',
-        'lib/angular/tmhDynamicLocale.js',
+        'lib/angular-ui-sortable/sortable.min.js',
+        'lib/angular-dynamic-locale/tmhDynamicLocale.min.js',
         'lib/ng-file-upload/angular-file-upload.min.js',
         
         'lib/bootstrap/js/bootstrap.2.3.2.min.js',
@@ -30,6 +30,7 @@ LazyLoad.js(
         'js/umbraco.services.js',
         'js/umbraco.security.js',
         'js/umbraco.controllers.js',
+        
         'js/routes.js',
         'js/init.js'
   ],

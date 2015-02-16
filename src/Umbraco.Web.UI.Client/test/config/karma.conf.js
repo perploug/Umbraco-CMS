@@ -7,17 +7,17 @@ module.exports = function(karma) {
 
     // list of files / patterns to load in the browser
     files: [
-        'lib/jquery/jquery-2.0.3.min.js',
+        'bower_components/jquery/dist/jquery.min.js',
 
         'bower_components/angular/angular.js',
         'bower_components/angular-route/angular-route.js',
         'bower_components/angular-cookies/angular-cookies.js',
         'bower_components/angular-mocks/angular-mocks.js',
-        
+		
         'bower_components/lodash/lodash.js',
         'bower_components/rgrove-lazyload/lazyload.js',
-       
-        'lib/angular/angular-ui-sortable.js',
+        'bower_components/angular-ui-sortable/sortable.min.js',
+		
         'lib/umbraco/Extensions.js', 
         
 
@@ -31,8 +31,7 @@ module.exports = function(karma) {
          'src/common/resources/*.js',
          'src/common/mocks/**/*.js',
          'src/views/**/*.controller.js',
-         'test/unit/**/*.spec.js',
-        {pattern: 'lib/**/*.js', watched: true, served: true, included: false}       
+         'test/unit/**/*.spec.js'      
     ],
 
     // list of files to exclude
