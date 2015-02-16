@@ -1,5 +1,9 @@
 /** Executed when the application starts, binds to events and set global state */
 angular.module("umbraco")
+    .config(function (tmhDynamicLocaleProvider) {
+            //Set url for locale files
+            tmhDynamicLocaleProvider.localeLocationPattern('lib/angular-i18n/angular-locale_{{locale}}.js');
+    })
     .run(function (userService, dialogService, $routeParams, $timeout, $location, $log, $rootScope, $templateCache, appState, editorState, fileManager, assetsService, eventsService, securityRetryQueue, updateChecker, historyService, treeService, navigationService, tmhDynamicLocale) {
 
 

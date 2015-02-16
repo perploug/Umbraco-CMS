@@ -49,8 +49,5 @@ function MainController($scope, $rootScope, $location, $routeParams, $timeout, $
 
 
 //register it
-angular.module('umbraco').controller("Umbraco.MainController", MainController).
-        config(function (tmhDynamicLocaleProvider) {
-            //Set url for locale files
-            tmhDynamicLocaleProvider.localeLocationPattern('lib/angular/1.1.5/i18n/angular-locale_{{locale}}.js');
-        });
+angular.module('umbraco').controller("Umbraco.MainController", MainController);
+        

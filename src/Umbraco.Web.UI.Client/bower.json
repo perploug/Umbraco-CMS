@@ -76,7 +76,7 @@
       "": "sortable.min.js"
     },
 	"jquery": {
-      "": "dist/jquery.min.js"
+      "": "dist/jquery.min.{js,map}"
     },
 	"jquery-ui": {
       "": "jquery-ui.min.js"
