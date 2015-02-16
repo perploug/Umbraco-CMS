@@ -1,0 +1,73 @@
+
+/* FORM GRID */
+.umb-pane {
+  margin: 30px 20px;
+}
+
+.umb-pane > .umb-control-group:last-child {
+  border: none;
+  padding-bottom: 0 !important;
+}
+
+.umb-control-group {
+  border-bottom: 1px solid @grayLighter;
+  padding-bottom: 20px;
+  margin-bottom: 15px !important;
+}
+
+.umb-control-group .umb-el-wrap {
+  padding: 0
+}
+
+/* LABELS*/
+.umb-control-group label.control-label {
+  text-align: left
+}
+
+.umb-control-group label .help-block, 
+.umb-control-group label small {
+  font-size: 11px;
+  color: #a0a0a0;
+  line-height: 13px;
+  padding-top: 5px;
+}
+
+.controls-row {
+  padding-top: 5px;
+  margin-left: 240px !important;
+}
+
+.controls-row label {
+  display: inline-block
+}
+
+
+
+/* hidden labels editors */
+.umb-property{
+	.hidelabel .controls-row  {
+  		padding: 0px;
+  		border: none;
+  		margin: 0px !important;
+	}
+}
+.umb-nolabel .controls {
+  margin-left: 0px;
+}
+
+
+/*COMPACT MODE */
+.compact {
+	.umb-pane{margin: 0px 0px 15px 0px;}
+	.umb-control-group {
+	  border-bottom: 1px solid @grayLighter;
+	  padding-bottom: 10px;
+	  margin-bottom: 5px !important;
+	}
+	label.control-label {
+	  padding-top: 0px !important;
+	  margin-bottom: 0px;
+	}
+
+	.controls-row{padding-top: 0px }
+}
