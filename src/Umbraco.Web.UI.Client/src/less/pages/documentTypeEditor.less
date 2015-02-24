@@ -1,12 +1,42 @@
+.contentType-alias{
+	color: @gray; font-weight: 400; font-size: 14px;
+	display: block; height: 20px;
+	margin: 2px 0px 0px 83px;
+	padding: 3px 5px;
+}
+
+
+.contentType-icon{
+	width: 40px;
+	height: 40px;
+	border: 1px solid transparent;
+	padding: 5px;
+	position: absolute;
+	top: 15px;
+	left: 20px;	
+}
+
+.contentType-icon:hover{
+	border-color: @grayLight;
+}
+
+.contentType-icon i{
+	font-size: 38px;
+	line-height: 38px;
+}
+
+.contentType-header .umb-headline-editor-wrapper{
+	margin-left: 60px;
+}
 
 .editors-document-type-container{
 
 	.handle{visibility: hidden;}
+
 	.item-title{color: @blackLight; text-transform: none; font-size: 16px; padding-right: 30px;}
-	.item-alias{color: @grayLight; font-weight: 400; font-size: 14px;}
+	.item-alias{color: @grayLight; font-weight: 400; font-size: 14px; font-family: monospace;}
 
 	li{list-style: none}
-
 	
 	.fieldset-title{
 		border-bottom: 1px solid @grayLight;
@@ -23,17 +53,27 @@
 
 	.tab-title{
 			padding: 5px 27px 0px 10px;
-			position: absolute;
-			left: -1px;
-			top: -40px;
+			display: inline-block;
 			height: 25px;
 			background: white;
-			border: 1px solid #f4f4f4;
-			border-bottom: none;
+			margin: 0;
+			border: 1px solid @grayLight;
 			border-radius: 5px 5px 0px 0px;
+			font-size: 14px;
+			z-index: 300;
+			margin-right: 4px;
+			color: @gray;
 	}
 
+	.tab-title.current{
+		border-bottom-color: white;
+		color: @blackLight;
+	}
 	
+	.tab-title:hover .handle{
+		visibility: visible;
+	}
+
 	.editors-document-type-canvas{
 		
 		min-height: 200px;
@@ -79,8 +119,9 @@
 }
 
 .edt-tab{
-	margin: 20px; margin-top: 50px; border: 1px solid #f4f4f4; border-bottom-width: 2px;
-	
+	margin: 20px; margin-top: -20px; border: 1px solid @grayLight; border-bottom-width: 2px;
+	z-index: 200;
+
 	.toggle-preview{
 		position: absolute; top: -30px; right: -5px; color: @blackLight; font-size: 19px
 	}
@@ -104,9 +145,7 @@
 }
 
 
-.edt-tab:hover > h4 > .handle{
-	visibility: visible;
-}
+
 
 .edt-property-group{
 	position: relative;
@@ -120,6 +159,7 @@
 
 .edt-property-group-sizer{
 	bottom: 0; top: 0; right: -10px; width: 15px; position: absolute; cursor: e-resize;
+	background: red
 }
 
 .span12 .edt-property-group-sizer{

@@ -4,7 +4,7 @@ angular.module("umbraco")
             //Set url for locale files
             tmhDynamicLocaleProvider.localeLocationPattern('lib/angular-i18n/angular-locale_{{locale}}.js');
     })
-    .run(function (userService, dialogService, $routeParams, $timeout, $location, $log, $rootScope, $templateCache, appState, editorState, fileManager, assetsService, eventsService, securityRetryQueue, updateChecker, historyService, treeService, navigationService, tmhDynamicLocale) {
+    .run(function (userService, $routeParams, $timeout, $location, $log, $rootScope, $templateCache, dialogService, appState, editorState, fileManager, assetsService, eventsService, securityRetryQueue, updateChecker, historyService, treeService, navigationService, notificationsService, tmhDynamicLocale) {
 
 
         //This sets the default jquery ajax headers to include our csrf token, we

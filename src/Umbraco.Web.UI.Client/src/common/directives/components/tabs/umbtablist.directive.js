@@ -1,4 +1,4 @@
-angular.module("umbraco.directives.html")
+angular.module("umbraco.directives")
     .directive('umbTabList', function () {
         return {
             transclude: true,

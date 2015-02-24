@@ -1,7 +1,7 @@
 angular.module('umbraco.security.interceptor', ['umbraco.security.retryQueue'])
 
 // This http interceptor listens for authentication failures
-.factory('securityInterceptor', ['$injector', 'securityRetryQueue', function($injector, queue) {
+.factory('securityInterceptor', ['$injector', 'securityRetryQueue', 'eventsService', function($injector, queue, eventsService) {
       return {
         responseError: function(originalResponse) {
           

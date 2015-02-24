@@ -42,11 +42,19 @@ angular.module("umbraco.directives")
                 scope.closeOverLay = function(){
                     if(scope.model.close){
                         scope.model.close(scope.model);
-                    }else{
-                        scope.model = null;
-                    }    
+                    }   
                 };
 
+                scope.submit = function(value){
+                    if(scope.model.submit){
+                        if(!value)
+                        {
+                            value = scope.model;
+                        }
+                        
+                        scope.model.submit(value);
+                    }   
+                };
             }
 
 
