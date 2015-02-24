@@ -1,31 +1,8 @@
 <div ng-controller="Umbraco.PropertyEditors.FolderBrowserController">
 
-    <div ng-file-drop ng-file-select ng-hide="creating || uploading"
-        ng-model="files" 
-        class="umb-upload-button-big" 
-        drag-over-class="dragover" 
-        ng-multiple="true" 
-        allow-dir="true"
-        accept=".jpg,.png,.pdf">
-
+    <div class="umb-upload-button-big" ng-hide="creating">
         <i class="icon icon-page-up"></i>
         <p><localize key="media_clickToUpload">Click to upload</localize></p>
-    </div>
-    
-
-    <div>
-        <div ng-repeat="file in files" class="span3">
-            <div class="thumbnail" style="height: 150px">
-                <div style="height: 100%; width; 100%; overflow: hidden; position: relative;">
-                    <div 
-                        style="top: 0; bottom: 0; right: 0; width: 100%; position: absolute; background: white; opacity: 0.7" 
-                        ng-style="{'width': 100-file.progress + '%'}">
-                    </div> 
-                    
-                    <img ng-src="{{file.inBrowserSrc}}" style="min-height: 150px" />
-                </div>
-            </div>
-        </div>
     </div>
 
     <hr/>
