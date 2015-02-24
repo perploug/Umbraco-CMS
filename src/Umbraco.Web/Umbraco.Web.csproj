@@ -268,8 +268,11 @@
     </Compile>
     <Compile Include="ApplicationContextExtensions.cs" />
     <Compile Include="AreaRegistrationContextExtensions.cs" />
+    <Compile Include="Models\ContentEditing\ContentPropertyGroupDto.cs" />
+    <Compile Include="Models\ContentEditing\ContentTypeDto.cs" />
     <Compile Include="Models\LegacyConvertedNode.cs" />
     <Compile Include="Models\LegacyConvertedNodeProperty.cs" />
+    <Compile Include="Models\Mapping\ContentPropertyGroupResolver.cs" />
     <Compile Include="Scheduling\BackgroundTaskRunner.cs" />
     <Compile Include="BatchedServerMessenger.cs" />
     <Compile Include="CacheHelperExtensions.cs" />
@@ -500,6 +503,7 @@
     <Compile Include="Strategies\NotificationsHandler.cs" />
     <Compile Include="Strategies\RelateOnCopyHandler.cs" />
     <Compile Include="TagQuery.cs" />
+    <Compile Include="Trees\ContentTypeTreeController.cs" />
     <Compile Include="Trees\CoreTreeAttribute.cs" />
     <Compile Include="Trees\DataTypeTreeController.cs" />
     <Compile Include="Trees\FileSystemTreeController.cs" />

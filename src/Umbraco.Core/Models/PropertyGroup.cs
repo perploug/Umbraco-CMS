@@ -18,6 +18,7 @@ namespace Umbraco.Core.Models
         private string _name;
         private Lazy<int?> _parentId;
         private int _sortOrder;
+        private int _columns;
         private PropertyTypeCollection _propertyTypes;
 
         public PropertyGroup() : this(new PropertyTypeCollection())
@@ -32,6 +33,8 @@ namespace Umbraco.Core.Models
         private static readonly PropertyInfo NameSelector = ExpressionHelper.GetPropertyInfo<PropertyGroup, string>(x => x.Name);
         private static readonly PropertyInfo ParentIdSelector = ExpressionHelper.GetPropertyInfo<PropertyGroup, int?>(x => x.ParentId);
         private static readonly PropertyInfo SortOrderSelector = ExpressionHelper.GetPropertyInfo<PropertyGroup, int>(x => x.SortOrder);
+        private static readonly PropertyInfo ColumnsSelector = ExpressionHelper.GetPropertyInfo<PropertyGroup, int>(x => x.Columns);
+
         private readonly static PropertyInfo PropertyTypeCollectionSelector = ExpressionHelper.GetPropertyInfo<PropertyGroup, PropertyTypeCollection>(x => x.PropertyTypes);
         void PropertyTypesChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
@@ -92,6 +95,20 @@ namespace Umbraco.Core.Models
                     _sortOrder = value;
                     return _sortOrder;
                 }, _sortOrder, SortOrderSelector);
+            }
+        }
+
+        [DataMember]
+        public int Columns
+        {
+            get { return _columns; }
+            set
+            {
+                SetPropertyValueAndDetectChanges(o =>
+                {
+                    _columns = value;
+                    return _columns;
+                }, _columns, ColumnsSelector);
             }
         }
 

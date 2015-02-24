@@ -24,6 +24,8 @@ namespace Umbraco.Web.Models.ContentEditing
         [DataMember(Name = "editor", IsRequired = false)]
         public string Editor { get; set; }
 
+        [DataMember(Name = "dataType", IsRequired = false)]
+        public int DataType { get; set; }
 
         /// <summary>
         /// Used internally during model mapping

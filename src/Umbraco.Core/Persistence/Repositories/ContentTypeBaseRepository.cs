@@ -973,9 +973,9 @@ AND umbracoNode.id <> @id",
                 // NOTE: MySQL requires a SELECT * FROM the inner union in order to be able to sort . lame.
 
                 var sqlBuilder = new StringBuilder(@"SELECT PG.contenttypeNodeId as contentTypeId,
-                            PT.ptId, PT.ptAlias, PT.ptDesc,PT.ptHelpText,PT.ptMandatory,PT.ptName,PT.ptSortOrder,PT.ptRegExp, 
+                            PT.ptId, PT.ptAlias, PT.ptDesc,PT.ptHelpText,PT.ptMandatory,PT.ptName,PT.ptSortOrder,PT.ptRegExp, PT.ptGroupId, 
                             PT.dtId,PT.dtDbType,PT.dtPropEdAlias,
-                            PG.id as pgId, PG.parentGroupId as pgParentGroupId, PG.sortorder as pgSortOrder, PG." + SqlSyntaxContext.SqlSyntaxProvider.GetQuotedColumnName("text") + @" as pgText
+                            PG.id as pgId, PG.parentGroupId as pgParentGroupId, PG.sortorder as pgSortOrder, PG.columns as pgColumns, PG." + SqlSyntaxContext.SqlSyntaxProvider.GetQuotedColumnName("text") + @" as pgText
                         FROM cmsPropertyTypeGroup as PG
                         LEFT JOIN
                         (
@@ -994,9 +994,9 @@ AND umbracoNode.id <> @id",
 
                         SELECT  PT.contentTypeId as contentTypeId,
                                 PT.id as ptId, PT.Alias as ptAlias, PT." + SqlSyntaxContext.SqlSyntaxProvider.GetQuotedColumnName("Description") + @" as ptDesc, PT.helpText as ptHelpText,
-                                PT.mandatory as ptMandatory, PT.Name as ptName, PT.sortOrder as ptSortOrder, PT.validationRegExp as ptRegExp,
+                                PT.mandatory as ptMandatory, PT.Name as ptName, PT.sortOrder as ptSortOrder, PT.validationRegExp as ptRegExp, PT.propertyTypeGroupId as ptGroupId,
                                 DT.nodeId as dtId, DT.dbType as dtDbType, DT.propertyEditorAlias as dtPropEdAlias,
-                                PG.id as pgId, PG.parentGroupId as pgParentGroupId, PG.sortorder as pgSortOrder, PG." + SqlSyntaxContext.SqlSyntaxProvider.GetQuotedColumnName("text") + @" as pgText
+                                PG.id as pgId, PG.parentGroupId as pgParentGroupId, PG.sortorder as pgSortOrder, PG.columns as pgColumns, PG." + SqlSyntaxContext.SqlSyntaxProvider.GetQuotedColumnName("text") + @" as pgText
                         FROM cmsPropertyType as PT
                         INNER JOIN cmsDataType as DT
                         ON PT.dataTypeId = DT.nodeId
@@ -1034,7 +1034,7 @@ AND umbracoNode.id <> @id",
                         //filter based on the current content type
                         .Where(x => x.contentTypeId == currId)
                         //turn that into a custom object containing only the group info
-                        .Select(x => new { GroupId = x.pgId, ParentGroupId = x.pgParentGroupId, SortOrder = x.pgSortOrder, Text = x.pgText })
+                        .Select(x => new { GroupId = x.pgId, ParentGroupId = x.pgParentGroupId, SortOrder = x.pgSortOrder, Text = x.pgText, Columns = x.pgColumns })
                         //get distinct data by id
                         .DistinctBy(x => (int)x.GroupId)
                         //for each of these groups, create a group object with it's associated properties
@@ -1059,7 +1059,8 @@ AND umbracoNode.id <> @id",
                             Id = group.GroupId,
                             Name = group.Text,
                             ParentId = group.ParentGroupId,
-                            SortOrder = group.SortOrder
+                            SortOrder = group.SortOrder,
+                            Columns = group.Columns
                         }).ToArray());
 
                     allPropertyGroupCollection[currId] = propertyGroupCollection;

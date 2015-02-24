@@ -1,0 +1,35 @@
+<div class="umb-overlay-body">
+		
+		<h5>Common elements</h5>
+        <ul class="umb-card-grid">
+        	<li>
+            	<a href ng-click="model.addGroup()"> 
+                	<i class="icon-thumbnail-list"></i> 
+                	Fieldset
+            	</a>
+        	</li>
+
+            <li ng-repeat="dt in model.favs | orderBy:name">
+                <a href ng-click="model.submit(dt)"> 
+                    <i class="{{dt.icon}}"></i> 
+                    {{dt.name}}
+                </a>
+            </li>
+        </ul>
+
+		<hr>
+
+
+		<div ng-repeat="(key, value) in model.dataTypes">
+                <h5>{{key}}</h5>
+                <ul class="umb-card-grid">
+                	<li ng-repeat="dt in value | orderBy:name">
+	                	<a href ng-click="model.submit(dt)"> 
+	                    	<i class="{{dt.icon}}"></i> 
+	                    	{{dt.name}}
+	                	</a>
+                	</li>
+                </ul>
+        </div>
+
+</div>

@@ -81,9 +81,19 @@
             //TODO: Fill in the rest!
 
             /// <summary>
-            /// alias for the media tree.
+            /// alias for the template tree.
             /// </summary>
             public const string Templates = "template";
+
+            /// <summary>
+            /// alias for the document type tree.
+            /// </summary>
+            public const string DocumentTypes = "documenttype";
+
+            /// <summary>
+            /// alias for the media type tree.
+            /// </summary>
+            public const string MediaTypes = "mediatype";
 
             public const string RelationTypes = "relationTypes";
 

@@ -29,6 +29,9 @@ namespace Umbraco.Core.Models.Rdbms
         [Column("sortorder")]
         public int SortOrder { get; set; }
 
+        [Column("columns")]
+        public int Columns { get; set; }
+
         [ResultColumn]
         public List<PropertyTypeDto> PropertyTypeDtos { get; set; }
     }

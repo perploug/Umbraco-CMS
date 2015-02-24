@@ -13,6 +13,8 @@ using System.Linq;
 using Umbraco.Web.WebApi.Filters;
 using Constants = Umbraco.Core.Constants;
 using Newtonsoft.Json;
+using Umbraco.Core.PropertyEditors;
+
 
 namespace Umbraco.Web.Editors
 {
@@ -34,7 +36,7 @@ namespace Umbraco.Web.Editors
         /// </summary>
         public ContentTypeController()
             : this(UmbracoContext.Current)
-        {            
+        {
         }
 
         /// <summary>
@@ -56,7 +58,43 @@ namespace Umbraco.Web.Editors
             return ApplicationContext.Services.ContentTypeService.GetAllPropertyTypeAliases();
         }
 
-        /// <summary>
+
+        public ContentTypeDto GetById(int id)
+        {
+            var ct = Services.ContentTypeService.GetContentType(id);
+            if (ct == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+
+            var dto = Mapper.Map<IContentType, ContentTypeDto>(ct);
+            return dto;
+        }
+
+
+        public ContentPropertyDisplay GetPropertyTypeScaffold(int id){
+
+
+            var dataTypeDiff = Services.DataTypeService.GetDataTypeDefinitionById(id);
+
+            if (dataTypeDiff == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+
+            var preVals = UmbracoContext.Current.Application.Services.DataTypeService.GetPreValuesCollectionByDataTypeId(id);
+            var editor = PropertyEditorResolver.Current.GetByAlias(dataTypeDiff.PropertyEditorAlias);
+
+            return new ContentPropertyDisplay()
+                {
+                    Editor = dataTypeDiff.PropertyEditorAlias,
+                    Validation = new PropertyTypeValidation() {},
+                    View = editor.ValueEditor.View,
+                    Config = editor.PreValueEditor.ConvertDbToEditor(editor.DefaultPreValues, preVals)
+                };
+        }
+
+    /// <summary>
         /// Returns the allowed child content type objects for the content item id passed in
         /// </summary>
         /// <param name="contentId"></param>

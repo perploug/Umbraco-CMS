@@ -1,32 +1,16 @@
-<div class="umb-overlay-body" ng-controller="Umbraco.Editors.DocumentType.PropertyController">
+<div class="umb-overlay-body">
 		
-		<h5>Layout</h5>
-        <ul class="umb-card-grid">
-        	<li>
-            	<a href ng-click="model.addTab()"> 
-                	<i class="icon-tab"></i> 
-                	Tab
-            	</a>
-        	</li>
-        	<li>
-            	<a href ng-click="model.addGroup()"> 
-                	<i class="icon-thumbnail-list"></i> 
-                	Fieldset
-            	</a>
-        	</li>
-        </ul>
+        <h5>Description</h5>
+        <textarea rows="2" style="display: block; width: 100%" placeholder="Description" ng-bind="property.description"></textarea>
 
-		<hr>
+        <h5>Validation</h5>
+        <label class="checkbox"><input type="checkbox" ng-bind="property.mandatory" /> Field is mandatory </label>
 
-		<div ng-repeat="(key, value) in model.dataTypes">
-                <h5>{{key}}</h5>
-                <ul class="umb-card-grid">
-                	<li ng-repeat="dt in value">
-	                	<a href ng-click="model.submit(dt)"> 
-	                    	<i class="{{dt.icon}}"></i> 
-	                    	{{dt.name}}
-	                	</a>
-                	</li>
-                </ul>
-        </div>	
+        <h5>Configuration</h5>
+        <umb-property 
+            property="preValue" 
+            ng-repeat="preValue in model.meh.preValues">
+            
+            <umb-property-editor model="preValue" is-pre-value="true"></umb-property-editor>
+        </umb-property>
 </div>

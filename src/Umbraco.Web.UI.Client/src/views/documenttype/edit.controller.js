@@ -8,17 +8,32 @@
  */
 function DocumentTypeEditController($scope, $rootScope, $routeParams, $log, contentTypeResource, dataTypeResource) {
 	$scope.page = {action: [], menu: [] };
-	//$rootScope.emptySection = true; 
+	
+	$rootScope.emptySection = true; 
+	$scope.$hidePreview = false;
 
 	contentTypeResource.getById($routeParams.id).then(function(dt){
 		$scope.contentType = dt;
+		$scope.currentTab = dt.groups[0];
+
+		$scope.showSettings(dt);
 	});
 
 	//hacking datatypes and their icons
 	dataTypeResource.getAll().then(function(data){
 
+		var favs = ["Textstring", "Media Picker", "Image Cropper", "List View - Content", "Date Picker", "Richtext editor"];
+		$scope.favs = [];
+
+		$scope.allDataTypes = data;
+
 		data = _.groupBy(data, function(dt){ 
 			dt.icon = "icon-autofill";
+
+			//fav list
+			if(favs.indexOf(dt.name) >= 0){
+				$scope.favs.push(dt);
+			}
 
 			if(dt.name.indexOf("Dropdown") > -1 || dt.name.indexOf("Checkbox") > -1){
 				dt.icon = "icon-bulleted-list";
@@ -30,12 +45,19 @@ function DocumentTypeEditController($scope, $rootScope, $routeParams, $log, cont
 				return "Collections";
 			}
 
-			if(dt.name.indexOf("picker") > -1){
+
+
+			if(dt.name.indexOf("Picker") > -1){
 				dt.icon ="icon-hand-pointer-alt"
+				
+				if(dt.name.indexOf("Date") > -1){
+					dt.icon =" icon-calendar"
+				}
+
 				return "Pickers";
 			}
 
-			if(dt.name.indexOf("media") > -1 || dt.name.indexOf("Upload") > -1 || dt.name.indexOf("Crop") > -1){
+			if(dt.name.indexOf("Media") > -1 || dt.name.indexOf("Upload") > -1 || dt.name.indexOf("Crop") > -1){
 				dt.icon ="icon-picture"
 				return "Media";
 			}
@@ -49,39 +71,46 @@ function DocumentTypeEditController($scope, $rootScope, $routeParams, $log, cont
 	$scope.actions = [{name: "Structure", cssClass: "list"},{name: "Structure", cssClass: "list"},{name: "Structure", cssClass: "list"}];
 
 
-	$scope.addTab = function(groups){
-		groups.push({groups: [], properties:[]});
+	$scope.showSettings = function(ct){
+		$scope.dialogModel = {};
+		$scope.dialogModel.title = "Doctype stuff";
+		$scope.dialogModel.contentType = ct;
+		$scope.dialogModel.view = "views/documentType/dialogs/contentType.html";
 	};
 
-	$scope.addProperty = function(properties){
+
+	$scope.editIcon = function(ct){
 		$scope.dialogModel = {};
 		$scope.dialogModel.title = "Add property type";
 		$scope.dialogModel.datatypes = $scope.dataTypes;
-		$scope.dialogModel.addNew = true;
-		$scope.dialogModel.view = "views/documentType/dialogs/property.html";
 
-		$scope.dialogModel.close = function(model){
-			properties.push(model.property);
-			$scope.dialogModel = null;
+		$scope.dialogModel.addNew = true;
+		$scope.dialogModel.view = "views/common/dialogs/iconpicker.html";
+
+		$scope.dialogModel.submit = function(icon){
+			ct.icon = icon;
+			$scope.showSettings();
 		};	
 	};
 
-	$scope.toggleGroupSize = function(group){
-		if(group.columns !== 12){
-			group.columns = 12;
-		}else{
-			group.columns = 6;
-		}
-	};
 
-	$scope.changePropertyEditor = function(property){
+
+	$scope.editProperty = function(property){
 		$scope.dialogModel = {};
-		$scope.dialogModel.title = "Change property type";
+		$scope.dialogModel.title = property.label;
 		$scope.dialogModel.property = property;
 		$scope.dialogModel.dataTypes = $scope.dataTypes;
+		
+		//$scope.dialogModel.prevals = createPreValueProps($scope.dialogModel.dataType.preValues);
 		$scope.dialogModel.view = "views/documentType/dialogs/property.html";
 
-		$scope.dialogModel.submit = function(dt){
+		dataTypeResource.getById(property.dataType)
+        	.then(function(data) {
+        		$scope.dialogModel.meh = data;
+        	});
+
+
+		$scope.dialogModel.changeType = function(dt){
 			contentTypeResource.getPropertyTypeScaffold(dt.id)
 				.then(function(pt){
 					property.config = pt.config;
@@ -90,17 +119,16 @@ function DocumentTypeEditController($scope, $rootScope, $routeParams, $log, cont
 					$scope.dialogModel = null;
 				});	
 		};
+	};
 
-		$scope.dialogModel.close = function(model){
-			$scope.dialogModel = null;
-		};
-	}
+
 
 	$scope.addItems = function(tab){
 		$scope.dialogModel = {};
-		$scope.dialogModel.title = "Add some stuff";
+		$scope.dialogModel.title = "Add fields";
 		$scope.dialogModel.dataTypes = $scope.dataTypes;
-		$scope.dialogModel.view = "views/documentType/dialogs/property.html";
+		$scope.dialogModel.favs = $scope.favs;
+		$scope.dialogModel.view = "views/documentType/dialogs/dataTypes.html";
 
 		var target = tab;
 		if(tab.groups && tab.groups.length > 0){
@@ -108,22 +136,16 @@ function DocumentTypeEditController($scope, $rootScope, $routeParams, $log, cont
 		}
 
 		$scope.dialogModel.close = function(model){
-			$scope.dialogModel = null;
+			$scope.showSettings();
 		};
 
 		$scope.dialogModel.submit = function(dt){
 			contentTypeResource.getPropertyTypeScaffold(dt.id).then(function(pt){
 				pt.label = dt.name +" field";
+				pt.dataType = dt.id; 
+
 				target.properties.push(pt);
 			});
-		};
-
-		$scope.dialogModel.addTab = function(){
-			var newTab = {name: "New tab", properties:[], groups:[]};
-			var index = $scope.contentType.groups.indexOf(tab);
-			$scope.contentType.groups.splice(index+1, 0, newTab);
-			tab = newTab;
-			target = newTab
 		};
 
 		$scope.dialogModel.addGroup = function(){
@@ -133,20 +155,43 @@ function DocumentTypeEditController($scope, $rootScope, $routeParams, $log, cont
 		};
 	};
 
-
-	$scope.addProperty = function(group){
-		$log.log("open dialog");
-
-		$scope.dialogModel = {};
-		$scope.dialogModel.title = "Add property type";
-		$scope.dialogModel.dataTypes = $scope.dataTypes;
-		$scope.dialogModel.view = "views/documentType/dialogs/property.html";
-
-		$scope.dialogModel.close = function(model){
-			$scope.dialogModel = null;
-		};
+	$scope.addTab = function(groups){
+		var newTab = {name: "New tab", properties:[], groups:[]};
+		groups.push(newTab);
+		$scope.currentTab = newTab;
 	};
 
+	$scope.selectTab = function(tab){
+		$scope.currentTab = tab;
+	};
+
+	
+
+	$scope.toggleGroupSize = function(group){
+		if(group.columns !== 12){
+			group.columns = 12;
+		}else{
+			group.columns = 6;
+		}
+	};
+
+	
+
+	function createPreValueProps(preVals) {
+        var preValues = [];
+        for (var i = 0; i < preVals.length; i++) {
+            $scope.preValues.push({
+                hideLabel: preVals[i].hideLabel,
+                alias: preVals[i].key,
+                description: preVals[i].description,
+                label: preVals[i].label,
+                view: preVals[i].view,
+                value: preVals[i].value
+            });
+        }
+
+        return preValues;
+    }
 
 
 
