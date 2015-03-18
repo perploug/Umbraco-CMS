@@ -2,7 +2,7 @@ LazyLoad.js( [
       'lib/jquery/jquery.min.js',
       'lib/lodash/lodash.min.js',
     
-      'lib/angular/angular.min.js',
+      'lib/angular/angular.js',
       'lib/angular-animate/angular-animate.min.js',
       'lib/angular-cookies/angular-cookies.min.js',
       'lib/angular-touch/angular-touch.min.js',
